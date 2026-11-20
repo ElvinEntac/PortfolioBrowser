@@ -6,10 +6,11 @@
 // not from hiding this browser configuration.
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyDEr4rxmJYFRqBjeObbHXYJ7k-JKPgarPg",
-    authDomain: "portfoliolink-8f6fe.firebaseapp.com",
-    projectId: "portfoliolink-8f6fe",
-    storageBucket: "portfoliolink-8f6fe.firebasestorage.app",
-    messagingSenderId: "798169396358",
-    appId: "1:798169396358:web:82f3b84d7f2f693b990d07"
+  apiKey: "AIzaSyDEr4rxmJYFRqBjeObbHXYJ7k-JKPgarPg",
+  authDomain: "portfoliolink-8f6fe.firebaseapp.com",
+  projectId: "portfoliolink-8f6fe",
+  storageBucket: "portfoliolink-8f6fe.firebasestorage.app",
+  messagingSenderId: "798169396358",
+  appId: "1:798169396358:web:82f3b84d7f2f693b990d07",
+  measurementId: "G-Q8YW3FTMDR"
 };
