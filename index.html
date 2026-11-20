@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover and share student portfolio websites.">
+  <title>PortfolioLink | Student Portfolio Directory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="PortfolioLink home">
+      <span class="brand-mark">P</span>
+      <span>Portfolio<span class="brand-accent">Link</span></span>
+    </a>
+    <nav>
+      <a href="#directory">Explore</a>
+      <a href="#submit">Share yours</a>
+      <button class="outline-button" id="open-manage" type="button">Manage my link</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">ONE PLACE. MANY PORTFOLIOS.</p>
+        <h1>Show your work.<br><span>Find inspiration.</span></h1>
+        <p class="hero-description">A community directory for sharing student portfolios and projects. Add your website and let others discover what you have created.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#submit">Add your portfolio <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#directory">Explore portfolios</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-window">
+          <div class="window-top"><i></i><i></i><i></i><span>portfolio-link.dev</span></div>
+          <div class="art-content">
+            <div class="art-avatar">P</div>
+            <div class="art-lines"><b></b><i></i><i></i></div>
+            <div class="art-card-row"><div></div><div></div><div></div></div>
+            <div class="art-link">↗ &nbsp; View portfolio</div>
+          </div>
+        </div>
+        <div class="floating-tag tag-one">✦ Creative work</div>
+        <div class="floating-tag tag-two">↗ Share your link</div>
+      </div>
+    </section>
+
+    <section class="stats-row" aria-label="Directory information">
+      <div><strong id="portfolio-count">—</strong><span>Portfolios shared</span></div>
+      <div><strong>Open</strong><span>Community directory</span></div>
+      <div><strong>Free</strong><span>To browse and share</span></div>
+    </section>
+
+    <section class="submit-section" id="submit">
+      <div class="section-heading">
+        <p class="eyebrow">JOIN THE DIRECTORY</p>
+        <h2>Add your portfolio</h2>
+        <p>Enter a display name and the public link to your portfolio website.</p>
+      </div>
+      <form id="submit-form" class="submit-form">
+        <label for="portfolio-name">Portfolio name</label>
+        <input id="portfolio-name" name="name" maxlength="50" placeholder="e.g. Alex's Portfolio" required>
+        <label for="portfolio-url">Portfolio website URL</label>
+        <input id="portfolio-url" name="url" type="url" placeholder="https://username.github.io/myportfolio/" required>
+        <button class="primary-button full-width" type="submit">Publish portfolio <span aria-hidden="true">↗</span></button>
+        <p class="form-note">By publishing, you confirm that this is a website you are allowed to share. Only submit links you trust.</p>
+      </form>
+      <div id="new-code-panel" class="code-panel" hidden>
+        <div class="success-icon">✓</div>
+        <h3>Your portfolio has been published!</h3>
+        <p>Save this edit code somewhere safe. You will need it to edit or remove your listing. It will not be shown again.</p>
+        <div class="code-display"><code id="new-edit-code"></code><button id="copy-code" type="button" class="small-button">Copy</button></div>
+        <button id="dismiss-code" type="button" class="text-button">I've saved my code</button>
+      </div>
+    </section>
+
+    <section class="directory-section" id="directory">
+      <div class="directory-heading">
+        <div>
+          <p class="eyebrow">THE COMMUNITY</p>
+          <h2>Explore portfolios</h2>
+          <p>Discover websites shared by other creators.</p>
+        </div>
+        <div class="search-wrap">
+          <span aria-hidden="true">⌕</span>
+          <input id="search-input" type="search" placeholder="Search portfolios..." aria-label="Search portfolios">
+        </div>
+      </div>
+      <div id="portfolio-grid" class="portfolio-grid">
+        <div class="loading-state">Loading portfolios...</div>
+      </div>
+      <p id="empty-state" class="empty-state" hidden>No portfolios found. Try another search or be the first to <a href="#submit">share yours</a>.</p>
+    </section>
+
+    <section class="manage-section" id="manage-section">
+      <div class="manage-card">
+        <div>
+          <p class="eyebrow">YOUR LISTING</p>
+          <h2>Update your portfolio</h2>
+          <p>Use the edit code you received when you first published your link.</p>
+        </div>
+        <form id="manage-form" class="manage-form">
+          <label for="edit-code">Your edit code</label>
+          <input id="edit-code" autocomplete="off" placeholder="Enter your edit code" required>
+          <button class="dark-button" type="submit">Find my portfolio</button>
+        </form>
+        <div id="manage-editor" class="manage-editor" hidden>
+          <p class="editor-status" id="editor-status"></p>
+          <label for="edit-name">Portfolio name</label>
+          <input id="edit-name" maxlength="50" required>
+          <label for="edit-url">Portfolio website URL</label>
+          <input id="edit-url" type="url" required>
+          <div class="editor-actions">
+            <button id="save-edit" class="primary-button" type="button">Save changes</button>
+            <button id="delete-entry" class="danger-button" type="button">Delete listing</button>
+          </div>
+          <button id="sign-out-edit" class="text-button" type="button">Close editor</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#"><span class="brand-mark">P</span><span>Portfolio<span class="brand-accent">Link</span></span></a>
+    <p>Made for creators who want to share what they build.</p>
+    <span>© <span id="year"></span> PortfolioLink</span>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
