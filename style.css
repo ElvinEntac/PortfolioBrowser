@@ -153,3 +153,76 @@ footer p { margin: 0; }
   .editor-actions button { width: 100%; }
   footer { flex-direction: column; text-align: center; padding: 25px 18px; }
 }
+
+
+/* Empty image space at the far right of the navigation bar.
+   Later, place an image inside this element or replace it with an img tag. */
+.nav-image-placeholder {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: block;
+  border: 1px dashed #cbd5e1;
+  border-radius: 11px;
+  background: #f3f6ff;
+  overflow: hidden;
+}
+
+/* Keep the image placeholder visible beside the Manage button on smaller screens. */
+@media (max-width: 800px) {
+  nav {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .brand {
+    gap: 7px;
+    font-size: 15px;
+    letter-spacing: -0.5px;
+  }
+
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+  }
+
+  nav {
+    gap: 8px;
+  }
+
+  .outline-button {
+    padding: 8px 9px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .nav-image-placeholder {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+    border-radius: 10px;
+  }
+}
+
+/* Extra-tight layout for very narrow phones. */
+@media (max-width: 360px) {
+  .brand {
+    font-size: 14px;
+  }
+
+  .outline-button {
+    padding: 7px 7px;
+    font-size: 10px;
+  }
+
+  nav {
+    gap: 6px;
+  }
+}
