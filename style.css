@@ -212,6 +212,21 @@ footer p { margin: 0; }
   object-fit: cover;
   border: 1px solid #e5e9f1;
 }
+  .nav-image-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.easter-egg {
+  position: absolute;
+  top: -5px;
+  right: -24px;
+  font-size: 7px;
+  color: #000;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0.85;
+}
 }
 
 /* Extra-tight layout for very narrow phones. */
