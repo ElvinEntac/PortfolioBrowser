@@ -213,19 +213,18 @@ footer p { margin: 0; }
   border: 1px solid #e5e9f1;
 }
   .nav-image-wrap {
-  position: relative;
-  display: inline-flex;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
 }
 
 .easter-egg {
-  position: absolute;
-  top: -5px;
-  right: -24px;
-  font-size: 2px;
-  color: #000;
+  font-size: 7px;
+  color: #000000;
   font-weight: 400;
   white-space: nowrap;
-  opacity: 0.85;
+  letter-spacing: 0;
 }
 }
 
