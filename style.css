@@ -204,11 +204,14 @@ footer p { margin: 0; }
   }
 
   .nav-image-placeholder {
-    width: 32px;
-    height: 32px;
-    flex-basis: 32px;
-    border-radius: 10px;
-  }
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: block;
+  border-radius: 11px;
+  object-fit: cover;
+  border: 1px solid #e5e9f1;
+}
 }
 
 /* Extra-tight layout for very narrow phones. */
