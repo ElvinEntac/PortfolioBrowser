@@ -243,3 +243,28 @@ footer p { margin: 0; }
     gap: 6px;
   }
 }
+/* MERU Easter Egg */
+.nav-image-wrap {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.nav-image-wrap .nav-image-placeholder {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: block;
+  object-fit: cover;
+}
+
+.nav-image-wrap .easter-egg {
+  display: inline-block;
+  color: #000000;
+  font-size: 6px;
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
