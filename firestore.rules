@@ -5,7 +5,7 @@ service cloud.firestore {
 
     function isAdmin() {
       return request.auth != null
-        && request.auth.uid == "r2oDeUnvFfSYQAI6sXjGm1YBab52";
+        && request.auth.uid == "gerGFZfvmUP8RVtV0zuIKRXk8432";
     }
 
     match /portfolios/{portfolioId} {
