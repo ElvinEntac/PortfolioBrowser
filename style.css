@@ -155,8 +155,7 @@ footer p { margin: 0; }
 }
 
 
-/* Empty image space at the far right of the navigation bar.
-   Later, place an image inside this element or replace it with an img tag. */
+
 .nav-image-placeholder {
   width: 34px;
   height: 34px;
@@ -168,7 +167,7 @@ footer p { margin: 0; }
   overflow: hidden;
 }
 
-/* Keep the image placeholder visible beside the Manage button on smaller screens. */
+
 @media (max-width: 800px) {
   nav {
     gap: 12px;
@@ -228,7 +227,7 @@ footer p { margin: 0; }
 }
 }
 
-/* Extra-tight layout for very narrow phones. */
+
 @media (max-width: 360px) {
   .brand {
     font-size: 14px;
@@ -243,7 +242,7 @@ footer p { margin: 0; }
     gap: 6px;
   }
 }
-/* MERU Easter Egg */
+
 .nav-image-wrap {
   display: inline-flex !important;
   flex-direction: row !important;
