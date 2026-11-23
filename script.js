@@ -1,3 +1,4 @@
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import {
     getAuth,
@@ -27,8 +28,6 @@ const $ = (selector) => document.querySelector(selector);
 const grid = $("#portfolio-grid");
 const toast = $("#toast");
 
-// Admin account details
-// Never put your password in this file.
 const ADMIN_EMAIL = "elvinentac@gmail.com";
 const ADMIN_UID = "gerGFZfvmUP8RVtV0zuIKRXk8432";
 
@@ -85,7 +84,6 @@ function safeHttpUrl(value) {
     }
 }
 
-// Convert regular edit codes into Firebase email identifiers.
 async function codeToEmail(code) {
     const bytes = new TextEncoder().encode(code.trim().toUpperCase());
 
@@ -119,7 +117,6 @@ function initials(name) {
         .toUpperCase();
 }
 
-// Create a public portfolio card.
 function makeCard(entry) {
     const article = document.createElement("article");
     article.className = "portfolio-card";
@@ -164,7 +161,6 @@ function makeCard(entry) {
 
 let allEntries = [];
 
-// Load portfolios from Firestore.
 async function loadPortfolios() {
     if (!db) return;
 
@@ -205,7 +201,6 @@ async function loadPortfolios() {
     }
 }
 
-// Display public portfolios.
 function renderPortfolios() {
     const term = $("#search-input").value.trim().toLowerCase();
 
@@ -230,7 +225,6 @@ function renderPortfolios() {
 
 $("#search-input").addEventListener("input", renderPortfolios);
 
-// Submit a new portfolio.
 $("#submit-form").addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -310,7 +304,6 @@ $("#submit-form").addEventListener("submit", async (event) => {
     }
 });
 
-// Copy generated edit code.
 $("#copy-code").addEventListener("click", async () => {
     const code = $("#new-edit-code").textContent;
 
@@ -334,7 +327,6 @@ $("#open-manage").addEventListener("click", () => {
     });
 });
 
-// Close Admin dashboard.
 function closeAdminPanel() {
     adminMode = false;
 
@@ -345,7 +337,6 @@ function closeAdminPanel() {
     $("#edit-code").value = "";
 }
 
-// Open Admin dashboard.
 async function openAdminPanel() {
     adminMode = true;
 
@@ -367,10 +358,9 @@ async function openAdminPanel() {
 
     renderAdminList();
 
-    showToast("Welcome, Admin.");
+    showToast("Settings opened.");
 }
 
-// Display all listings in the Admin dashboard.
 function renderAdminList() {
     const list = $("#admin-list");
 
@@ -449,10 +439,9 @@ function renderAdminList() {
 
         remove.textContent = "Delete";
 
-        // Admin can edit any listing.
         save.addEventListener("click", async () => {
             if (!adminMode || auth.currentUser?.uid !== ADMIN_UID) {
-                return showToast("Admin authentication is required.");
+                return showToast("Access could not be verified.");
             }
 
             const newName = nameInput.value.trim();
@@ -488,10 +477,9 @@ function renderAdminList() {
             }
         });
 
-        // Admin deletes only the listing, not the owner's Firebase account.
         remove.addEventListener("click", async () => {
             if (!adminMode || auth.currentUser?.uid !== ADMIN_UID) {
-                return showToast("Admin authentication is required.");
+                return showToast("Access could not be verified.");
             }
 
             if (!confirm(
@@ -536,7 +524,6 @@ function renderAdminList() {
     });
 }
 
-// Manage form: Admin password OR regular user's edit code.
 $("#manage-form").addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -547,7 +534,7 @@ $("#manage-form").addEventListener("submit", async (event) => {
     const enteredValue = $("#edit-code").value.trim();
 
     if (!enteredValue) {
-        return showToast("Enter your edit code or Admin password.");
+        return showToast("Enter your edit code or password.");
     }
 
     const button = event.submitter;
@@ -557,7 +544,6 @@ $("#manage-form").addEventListener("submit", async (event) => {
     button.textContent = "Checking...";
 
     try {
-        // First, try the Admin account.
         try {
             const adminCredential = await signInWithEmailAndPassword(
                 auth,
@@ -574,14 +560,13 @@ $("#manage-form").addEventListener("submit", async (event) => {
             await signOut(auth);
 
         } catch (adminError) {
-            // If Admin sign-in fails, try the regular edit-code system.
+            // Continue to regular edit-code login.
         }
 
-        // Regular user edit-code login.
         const code = enteredValue.toUpperCase();
 
         if (!/^[A-HJ-NP-Z2-9]{16}$/.test(code)) {
-            return showToast("That password or edit code was not recognized.");
+            return showToast("That code was not recognized.");
         }
 
         const email = await codeToEmail(code);
@@ -630,7 +615,7 @@ $("#manage-form").addEventListener("submit", async (event) => {
     } catch (error) {
         console.error(error);
 
-        showToast("Edit code not recognized. Check it and try again.");
+        showToast("Code not recognized. Check it and try again.");
 
     } finally {
         button.disabled = false;
@@ -639,7 +624,6 @@ $("#manage-form").addEventListener("submit", async (event) => {
     }
 });
 
-// Regular user saves their own listing.
 $("#save-edit").addEventListener("click", async () => {
     if (!currentUser || !currentEntryId || adminMode) {
         return showToast("Find your portfolio first.");
@@ -675,7 +659,6 @@ $("#save-edit").addEventListener("click", async () => {
     }
 });
 
-// Regular user deletes their own listing and edit account.
 $("#delete-entry").addEventListener("click", async () => {
     if (!currentUser || !currentEntryId || adminMode) {
         return;
@@ -690,7 +673,6 @@ $("#delete-entry").addEventListener("click", async () => {
             doc(db, "portfolios", currentEntryId)
         );
 
-        // This is the account of the person who signed in with this edit code.
         await deleteUser(currentUser);
 
         currentUser = null;
@@ -714,7 +696,6 @@ $("#delete-entry").addEventListener("click", async () => {
     }
 });
 
-// Regular user closes their editor.
 $("#sign-out-edit").addEventListener("click", async () => {
     if (auth?.currentUser) {
         await signOut(auth);
@@ -731,7 +712,6 @@ $("#sign-out-edit").addEventListener("click", async () => {
     $("#manage-form").reset();
 });
 
-// Admin signs out.
 $("#admin-sign-out").addEventListener("click", async () => {
     if (auth?.currentUser) {
         await signOut(auth);
@@ -743,10 +723,9 @@ $("#admin-sign-out").addEventListener("click", async () => {
 
     closeAdminPanel();
 
-    showToast("Admin signed out.");
+    showToast("Session closed.");
 });
 
-// Load public listings when the page opens.
 if (db) {
     loadPortfolios();
 }
