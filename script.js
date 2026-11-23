@@ -30,7 +30,7 @@ const toast = $("#toast");
 // Admin account details
 // Never put your password in this file.
 const ADMIN_EMAIL = "elvinentac@gmail.com";
-const ADMIN_UID = "r2oUnvDeUnvFfSYQAI6sXjGm1YBab52";
+const ADMIN_UID = "r2oDeUnvFfSYQAI6sXjGm1YBab52";
 
 let currentUser = null;
 let currentEntryId = null;
